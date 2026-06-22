@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Qingyun Li</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
             --paper: #fbfaf7;
@@ -15,6 +18,8 @@
             --purple: #4b2e83;
             --gold: #b38b00;
             --max-width: 1080px;
+            --font-serif: "Palatino Linotype", Palatino, "Book Antiqua", serif;
+            --font-sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
         }
 
         * {
@@ -31,7 +36,7 @@
                 linear-gradient(90deg, rgba(75, 46, 131, 0.045), transparent 42%),
                 linear-gradient(180deg, var(--paper), #f8f5ee 76%, var(--paper-deep));
             color: var(--ink);
-            font-family: "Palatino Linotype", Palatino, "Book Antiqua", serif;
+            font-family: var(--font-serif);
             font-size: 18px;
             line-height: 1.62;
         }
@@ -86,7 +91,7 @@
         .affiliation {
             color: var(--purple);
             font-size: 1rem;
-            line-height: 1.42;
+            line-height: 1.62;
             margin-bottom: 30px;
         }
 
@@ -135,7 +140,7 @@
 
         .eyebrow {
             color: var(--gold);
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: var(--font-sans);
             font-size: 0.76rem;
             font-weight: 700;
             letter-spacing: 0.14em;
@@ -202,6 +207,7 @@
         }
 
         .bio p {
+            font-family: var(--font-sans);
             margin-bottom: 16px;
         }
 
@@ -226,16 +232,16 @@
         }
 
         .publication h3 {
-            font-size: 1.08rem;
+            font-size: 1.02rem;
             line-height: 1.35;
             font-weight: 400;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
         }
 
         .publication h3 a {
             color: var(--ink);
-            text-decoration: underline;
-            text-decoration-color: transparent;
+            text-shadow: 0.002em 0 0 currentColor;
+            text-decoration: none;
             text-decoration-thickness: 1px;
             text-underline-offset: 0.18em;
             transition: color 0.2s ease, text-decoration-color 0.2s ease;
@@ -243,18 +249,28 @@
 
         .publication h3 a:hover {
             color: var(--purple);
-            text-decoration-color: var(--purple);
+            text-decoration: underline;
         }
 
         .authors {
             color: var(--muted);
+            font-family: var(--font-sans);
             font-size: 0.96rem;
-            margin-bottom: 4px;
+            font-weight: 300;
+            line-height: 1.48;
+            margin-bottom: 7px;
+        }
+
+        .authors strong {
+            color: var(--ink);
+            font-weight: 600;
         }
 
         .venue {
-            color: var(--purple);
+            color: var(--muted);
+            font-family: var(--font-sans);
             font-size: 0.94rem;
+            line-height: 1.42;
             margin-bottom: 0;
         }
 
@@ -278,7 +294,7 @@
 
         .date {
             color: var(--gold);
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: var(--font-sans);
             font-size: 0.78rem;
             font-weight: 700;
             letter-spacing: 0.08em;
@@ -287,6 +303,7 @@
         }
 
         .timeline h3 {
+            font-family: var(--font-sans);
             font-size: 1.03rem;
             font-weight: 400;
             line-height: 1.35;
@@ -295,6 +312,7 @@
 
         .timeline p {
             color: var(--muted);
+            font-family: var(--font-sans);
             font-size: 0.96rem;
             margin-bottom: 0;
         }
@@ -304,13 +322,14 @@
             background: rgba(255, 255, 255, 0.35);
             padding: 16px 18px;
             color: var(--muted);
+            font-family: var(--font-sans);
             font-size: 0.98rem;
         }
 
         footer {
             border-top: 1px solid var(--line);
             color: var(--faint);
-            font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            font-family: var(--font-sans);
             font-size: 0.78rem;
             margin-top: 56px;
             padding-top: 18px;
@@ -439,7 +458,7 @@
                                         An Enhanced Algorithm for Automatically Capturing the Desired Moment in Photography
                                     </a>
                                 </h3>
-                                <p class="authors">Qingyun Li, Ruoyun Li, Yunqi Li</p>
+                                <p class="authors"><strong>Qingyun Li</strong>, Ruoyun Li, Yunqi Li</p>
                                 <p class="venue">2025 IEEE International Conference on Consumer Electronics (ICCE)</p>
                             </article>
 
@@ -449,7 +468,7 @@
                                         Planning and Automatically Capturing the Desired Moment in Photography
                                     </a>
                                 </h3>
-                                <p class="authors">Zhiyun Li, Ruoyun Li, Qingyun Li</p>
+                                <p class="authors">Zhiyun Li, Ruoyun Li, <strong>Qingyun Li</strong></p>
                                 <p class="venue">2024 IEEE International Conference on Consumer Electronics (ICCE)</p>
                             </article>
                         </section>
