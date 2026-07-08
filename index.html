@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --paper: #fbfaf7;
+            --paper: #ffffff;
             --paper-deep: #f1eee6;
             --ink: #1d1a16;
             --muted: #655f55;
@@ -32,9 +32,7 @@
 
         body {
             margin: 0;
-            background:
-                linear-gradient(90deg, rgba(75, 46, 131, 0.045), transparent 42%),
-                linear-gradient(180deg, var(--paper), #f8f5ee 76%, var(--paper-deep));
+            background: var(--paper);
             color: var(--ink);
             font-family: var(--font-serif);
             font-size: 18px;
@@ -260,12 +258,14 @@
         .publication {
             background: rgba(255, 255, 255, 0.42);
             border: 1px solid var(--line);
-            padding: 17px 20px 15px;
+            display: grid;
+            gap: 6px;
+            padding: 18px 20px 16px;
             transition: border-color 0.2s ease, background-color 0.2s ease;
         }
 
         .publication + .publication {
-            margin-top: 14px;
+            margin-top: 20px;
         }
 
         .publication:hover {
@@ -274,10 +274,12 @@
         }
 
         .publication h3 {
-            font-size: 1.02rem;
-            line-height: 1.35;
+            color: var(--ink);
+            font-family: var(--font-serif);
+            font-size: 1.08rem;
+            line-height: 1.42;
             font-weight: 400;
-            margin-bottom: 10px;
+            margin-bottom: 1px;
         }
 
         .publication h3 a {
@@ -294,12 +296,12 @@
         }
 
         .authors {
-            color: var(--muted);
+            color: #4f4a43;
             font-family: var(--font-sans);
-            font-size: 0.96rem;
-            font-weight: 300;
-            line-height: 1.48;
-            margin-bottom: 7px;
+            font-size: 0.92rem;
+            font-weight: 400;
+            line-height: 1.4;
+            margin-bottom: 0;
         }
 
         .authors strong {
@@ -308,23 +310,25 @@
         }
 
         .venue {
-            color: var(--muted);
+            color: var(--faint);
             font-family: var(--font-sans);
-            font-size: 0.94rem;
-            line-height: 1.42;
+            font-size: 0.86rem;
+            font-weight: 400;
+            letter-spacing: 0.01em;
+            line-height: 1.35;
             margin-bottom: 0;
         }
 
         .timeline {
             display: grid;
-            gap: 18px;
+            gap: 22px;
         }
 
         .timeline-item {
             display: grid;
             grid-template-columns: 120px 1fr;
             gap: 18px;
-            padding-bottom: 18px;
+            padding-bottom: 22px;
             border-bottom: 1px solid var(--line);
         }
 
