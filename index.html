@@ -295,6 +295,23 @@
             text-decoration: underline;
         }
 
+        .pub-pill {
+            display: inline-flex;
+            align-items: center;
+            border: 1px solid rgba(53, 119, 188, 0.34);
+            background: rgba(53, 119, 188, 0.1);
+            color: #27659e;
+            font-family: var(--font-sans);
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            line-height: 1;
+            margin-left: 8px;
+            padding: 3px 7px 4px;
+            text-transform: uppercase;
+            vertical-align: 0.14em;
+        }
+
         .authors {
             color: #4f4a43;
             font-family: var(--font-sans);
@@ -372,12 +389,74 @@
         }
 
         footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
             border-top: 1px solid var(--line);
             color: var(--faint);
             font-family: var(--font-sans);
             font-size: 0.78rem;
             margin-top: 56px;
             padding-top: 18px;
+        }
+
+        .footer-status {
+            color: #6d655b;
+            display: inline-flex;
+            justify-content: flex-end;
+            min-width: 132px;
+            text-align: right;
+        }
+
+        .footer-status-text {
+            align-items: center;
+            color: #675f55;
+            display: inline-flex;
+            font-weight: 500;
+            line-height: 1;
+            min-height: 1.2em;
+            position: relative;
+            transition:
+                color 0.32s ease,
+                opacity 0.32s ease,
+                transform 0.32s ease;
+        }
+
+        #footer-status-label {
+            display: inline-block;
+            position: relative;
+        }
+
+        .footer-status-text.is-animating #footer-status-label::after {
+            animation: footer-text-shine 1.55s linear forwards;
+            background:
+                linear-gradient(100deg, transparent 0%, transparent 43%, rgba(255, 255, 255, 0.96) 48%, #fff9ec 50%, rgba(255, 255, 255, 0.96) 52%, transparent 57%, transparent 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            background-position: 115% 0;
+            background-size: 245% 100%;
+            color: transparent;
+            content: attr(data-text);
+            inset: 0;
+            pointer-events: none;
+            position: absolute;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-status-text.is-changing {
+            opacity: 0;
+            transform: translateY(-3px);
+        }
+
+        @keyframes footer-text-shine {
+            from {
+                background-position: 115% 0;
+            }
+
+            to {
+                background-position: -12% 0;
+            }
         }
 
         @media (max-width: 820px) {
@@ -403,9 +482,28 @@
                 margin-top: 22px;
             }
 
+            footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .footer-status {
+                min-width: 0;
+                text-align: left;
+            }
+
             .timeline-item {
                 grid-template-columns: 1fr;
                 gap: 4px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .footer-status-text,
+            #footer-status-label,
+            #footer-status-label::after {
+                animation: none !important;
+                transition: none !important;
             }
         }
 
@@ -489,7 +587,7 @@
                             <article class="publication">
                                 <h3>Token-Level Control or Just a Better Mean? Isolating the Gains of Adaptive Decoding</h3>
                                 <p class="authors"><strong>Qingyun Li</strong>, Ruoyun Li</p>
-                                <p class="venue">Conference on Language Modeling (COLM) 2026</p>
+                                <p class="venue">Conference on Language Modeling (COLM) 2026 <span class="pub-pill">New</span></p>
                             </article>
 
                             <article class="publication">
@@ -581,8 +679,86 @@
         </div>
 
         <footer>
-            Last updated July 2026.
+            <span>Last updated July 2026.</span>
+            <span class="footer-status" aria-hidden="true">
+                <span class="footer-status-text" id="footer-status-text"><span id="footer-status-label" data-text="Thinking">Thinking</span></span>
+            </span>
         </footer>
     </div>
+    <script>
+        const footerStatusText = document.getElementById("footer-status-text");
+        const footerStatusLabel = document.getElementById("footer-status-label");
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const footerStatuses = [
+            "Thinking",
+            "Working",
+            "Biting my nails",
+            "Sleeping",
+            "Writing",
+            "Tweaking figures"
+        ];
+
+        if (footerStatusText && footerStatusLabel) {
+            let footerStatusIndex = 0;
+
+            const wait = (duration) => new Promise((resolve) => {
+                window.setTimeout(resolve, duration);
+            });
+
+            const setFooterStatus = async () => {
+                footerStatusText.classList.add("is-changing");
+                await wait(180);
+                const status = footerStatuses[footerStatusIndex];
+                footerStatusLabel.textContent = status;
+                footerStatusLabel.dataset.text = status;
+                footerStatusText.classList.remove("is-changing");
+            };
+
+            const playFooterAccent = () => new Promise((resolve) => {
+                let finished = false;
+                const finish = (event) => {
+                    if (event && event.animationName !== "footer-text-shine") {
+                        return;
+                    }
+
+                    if (finished) {
+                        return;
+                    }
+
+                    finished = true;
+                    window.clearTimeout(fallback);
+                    footerStatusText.classList.remove("is-animating");
+                    footerStatusLabel.removeEventListener("animationend", finish);
+                    resolve();
+                };
+                const fallback = window.setTimeout(finish, 2200);
+
+                footerStatusText.classList.remove("is-animating");
+                void footerStatusText.offsetWidth;
+                footerStatusLabel.addEventListener("animationend", finish);
+                footerStatusText.classList.add("is-animating");
+            });
+
+            const runFooterStatus = async () => {
+                while (true) {
+                    await playFooterAccent();
+                    await wait(1400);
+                    footerStatusIndex = (footerStatusIndex + 1) % footerStatuses.length;
+                    await setFooterStatus();
+                }
+            };
+
+            if (prefersReducedMotion) {
+                window.setInterval(() => {
+                    footerStatusIndex = (footerStatusIndex + 1) % footerStatuses.length;
+                    const status = footerStatuses[footerStatusIndex];
+                    footerStatusLabel.textContent = status;
+                    footerStatusLabel.dataset.text = status;
+                }, 4800);
+            } else {
+                runFooterStatus();
+            }
+        }
+    </script>
 </body>
 </html>
