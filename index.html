@@ -280,6 +280,12 @@
             vertical-align: 0.14em;
         }
 
+        .pub-pill-main {
+            border-color: rgba(75, 46, 131, 0.3);
+            background: rgba(75, 46, 131, 0.08);
+            color: var(--purple);
+        }
+
         .authors {
             color: #4f4a43;
             font-family: var(--font-sans);
@@ -302,6 +308,28 @@
             letter-spacing: 0.01em;
             line-height: 1.35;
             margin-bottom: 0;
+        }
+
+        .venue-with-badges {
+            align-items: center;
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+        }
+
+        .venue-label {
+            min-width: 0;
+        }
+
+        .venue-badges {
+            display: inline-flex;
+            flex-shrink: 0;
+            gap: 6px;
+            margin-left: 12px;
+        }
+
+        .venue-badges .pub-pill {
+            margin-left: 0;
         }
 
         .timeline {
@@ -560,7 +588,13 @@
                                     </a>
                                 </h3>
                                 <p class="authors"><strong>Qingyun Li</strong>, Ruoyun Li</p>
-                                <p class="venue">Conference on Language Modeling (COLM) 2026 <span class="pub-pill">New</span></p>
+                                <p class="venue venue-with-badges">
+                                    <span class="venue-label">Conference on Language Modeling (COLM) 2026</span>
+                                    <span class="venue-badges">
+                                        <span class="pub-pill pub-pill-main">Main</span>
+                                        <span class="pub-pill">New</span>
+                                    </span>
+                                </p>
                             </article>
 
                             <article class="publication">
