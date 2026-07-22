@@ -321,7 +321,15 @@
         }
 
         .venue-label {
+            align-items: center;
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 8px;
             min-width: 0;
+        }
+
+        .venue-label .pub-pill {
+            margin-left: 0;
         }
 
         .venue-badges {
@@ -592,10 +600,12 @@
                                 </h3>
                                 <p class="authors"><strong>Qingyun Li</strong>, Ruoyun Li</p>
                                 <p class="venue venue-with-badges">
-                                    <span class="venue-label">Conference on Language Modeling (COLM) 2026</span>
+                                    <span class="venue-label">
+                                        Conference on Language Modeling (COLM) 2026
+                                        <span class="pub-pill">New</span>
+                                    </span>
                                     <span class="venue-badges">
                                         <span class="pub-pill pub-pill-main">Main</span>
-                                        <span class="pub-pill">New</span>
                                     </span>
                                 </p>
                             </article>
