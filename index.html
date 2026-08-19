@@ -181,6 +181,13 @@
             margin-bottom: 20px;
         }
 
+        .section-heading-with-switch {
+            align-items: center;
+            display: flex;
+            gap: var(--space-3);
+            justify-content: space-between;
+        }
+
         h2 {
             color: var(--purple);
             font-size: 1.42rem;
@@ -220,6 +227,87 @@
             padding: 5px 11px 6px;
             font-size: 0.86rem;
             line-height: 1.3;
+        }
+
+        .view-switch {
+            align-items: center;
+            background: rgba(255, 255, 255, 0.48);
+            border: 1px solid rgba(75, 46, 131, 0.18);
+            border-radius: 999px;
+            display: grid;
+            gap: 2px;
+            grid-template-columns: repeat(2, 82px);
+            margin-left: auto;
+            padding: 2px;
+            position: relative;
+            width: max-content;
+        }
+
+        .view-switch::before {
+            background: rgba(75, 46, 131, 0.075);
+            border-radius: 999px;
+            bottom: 2px;
+            content: "";
+            left: 2px;
+            position: absolute;
+            top: 2px;
+            transform: translateX(0);
+            transition: transform 145ms ease;
+            width: calc((100% - 6px) / 2);
+        }
+
+        .view-switch[data-active="age"]::before {
+            transform: translateX(calc(100% + 2px));
+        }
+
+        .view-switch button {
+            appearance: none;
+            background: transparent;
+            border: 0;
+            border-radius: 999px;
+            color: var(--muted);
+            cursor: pointer;
+            display: inline-flex;
+            font: inherit;
+            font-size: 0.82rem;
+            align-items: center;
+            justify-content: center;
+            line-height: 1.2;
+            padding: 5px 11px 6px;
+            position: relative;
+            transition:
+                color 0.18s ease;
+            z-index: 1;
+        }
+
+        .view-switch button[aria-selected="true"] {
+            color: var(--purple);
+        }
+
+        .view-switch button:focus-visible {
+            outline: 2px solid var(--purple);
+            outline-offset: 2px;
+        }
+
+        .view-panel {
+            display: grid;
+            gap: 54px;
+        }
+
+        .view-panel[hidden] {
+            display: none;
+        }
+
+        .age-stack {
+            display: grid;
+            gap: 15px;
+        }
+
+        .age-years {
+            font-size: 0.72em;
+            font-weight: 400;
+            letter-spacing: 0;
+            margin-left: 3px;
         }
 
         .publication {
@@ -439,6 +527,10 @@
                 gap: var(--space-7);
             }
 
+            .view-panel {
+                gap: var(--space-7);
+            }
+
             footer {
                 align-items: flex-start;
                 flex-direction: column;
@@ -480,6 +572,21 @@
             .publication {
                 padding: 16px;
             }
+
+            .view-switch {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                width: 100%;
+            }
+
+            .section-heading-with-switch {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .view-switch button {
+                flex: 1 1 0;
+            }
+
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -489,6 +596,8 @@
 
             .nav a,
             .publication h3 a,
+            .view-switch::before,
+            .view-switch button,
             .footer-status-text,
             #footer-status-label,
             #footer-status-label::after {
@@ -572,9 +681,14 @@
                             </div>
                         </section>
 
+                        <div class="view-panel is-active" id="section-view" role="tabpanel" aria-label="By section" data-view-panel="section">
                         <section id="publications">
-                            <div class="section-heading">
+                            <div class="section-heading section-heading-with-switch">
                                 <h2>Publications</h2>
+                                <div class="view-switch" role="tablist" aria-label="Homepage view" data-active="section">
+                                    <button type="button" role="tab" aria-selected="true" aria-controls="section-view" data-view-button="section">By section</button>
+                                    <button type="button" role="tab" aria-selected="false" aria-controls="age-view" data-view-button="age">By age</button>
+                                </div>
                             </div>
 
                             <article class="publication">
@@ -682,6 +796,140 @@
                                 Patent information forthcoming.
                             </div>
                         </section>
+                        </div>
+
+                        <div class="view-panel" id="age-view" role="tabpanel" aria-label="By age" data-view-panel="age" hidden>
+                            <section class="age-section">
+                                <div class="section-heading section-heading-with-switch">
+                                    <h2>Age 14 <span class="age-years">(2025-2026)</span></h2>
+                                    <div class="view-switch" role="tablist" aria-label="Homepage view" data-active="section">
+                                        <button type="button" role="tab" aria-selected="true" aria-controls="section-view" data-view-button="section">By section</button>
+                                        <button type="button" role="tab" aria-selected="false" aria-controls="age-view" data-view-button="age">By age</button>
+                                    </div>
+                                </div>
+                                <div class="age-stack">
+                                    <article class="publication">
+                                        <h3>
+                                            <a href="https://colm.eventhosts.cc/virtual/2026/poster/2347" target="_blank" rel="noreferrer">
+                                                Token-Level Control or Just a Better Mean? Isolating the Gains of Adaptive Decoding
+                                            </a>
+                                        </h3>
+                                        <p class="authors"><strong>Qingyun Li</strong>, Ruoyun Li</p>
+                                        <p class="venue">
+                                            <span>Conference on Language Modeling (COLM) 2026</span>
+                                            <span class="pub-pill">Main track</span>
+                                            <span class="pub-pill pub-pill-accent">New</span>
+                                        </p>
+                                    </article>
+
+                                    <div class="timeline">
+                                        <div class="timeline-item">
+                                            <div class="date">2026</div>
+                                            <div>
+                                                <h3>Kyril Faenov Endowed Scholarship in Computer Science &amp; Engineering</h3>
+                                                <p>Awarded July 2026.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="age-section">
+                                <div class="section-heading">
+                                    <h2>Age 13 <span class="age-years">(2024-2025)</span></h2>
+                                </div>
+                                <div class="age-stack">
+                                    <article class="publication">
+                                        <h3>
+                                            <a href="https://doi.org/10.1109/ICCE63647.2025.10930158" target="_blank" rel="noreferrer">
+                                                An Enhanced Algorithm for Automatically Capturing the Desired Moment in Photography
+                                            </a>
+                                        </h3>
+                                        <p class="authors"><strong>Qingyun Li</strong>, Ruoyun Li, Yunqi Li</p>
+                                        <p class="venue"><span>IEEE International Conference on Consumer Electronics (ICCE) 2025</span><span class="pub-pill">Oral</span></p>
+                                    </article>
+
+                                    <div class="timeline">
+                                        <div class="timeline-item">
+                                            <div class="date">2025</div>
+                                            <div>
+                                                <h3>University of Washington, Seattle</h3>
+                                                <p>Admitted to the Paul G. Allen School of Computer Science &amp; Engineering.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="date">2025</div>
+                                            <div>
+                                                <h3>Everett Community College</h3>
+                                                <p>Completed an Associate of Arts and Sciences in Mathematics with a 4.0 GPA.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="timeline-item">
+                                            <div class="date">2025</div>
+                                            <div>
+                                                <h3>High School</h3>
+                                                <p>Graduated in ninth grade with a 4.0 GPA.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="age-section">
+                                <div class="section-heading">
+                                    <h2>Age 12 <span class="age-years">(2023-2024)</span></h2>
+                                </div>
+                                <article class="publication">
+                                    <h3>
+                                        <a href="https://doi.org/10.1109/ICCE59016.2024.10444255" target="_blank" rel="noreferrer">
+                                            Planning and Automatically Capturing the Desired Moment in Photography
+                                        </a>
+                                    </h3>
+                                    <p class="authors">Zhiyun Li, Ruoyun Li, <strong>Qingyun Li</strong></p>
+                                    <p class="venue">IEEE International Conference on Consumer Electronics (ICCE) 2024</p>
+                                </article>
+                            </section>
+
+                            <section class="age-section">
+                                <div class="section-heading">
+                                    <h2>Age 11 <span class="age-years">(2022-2023)</span></h2>
+                                </div>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="date">2023</div>
+                                        <div>
+                                            <h3>Perfect ACT score of 36</h3>
+                                            <p>Earned on September 9, 2023.</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="timeline-item">
+                                        <div class="date">2023</div>
+                                        <div>
+                                            <h3>USACO Gold Division</h3>
+                                            <p>Reached Gold in February 2023.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="age-section">
+                                <div class="section-heading">
+                                    <h2>Age 10 <span class="age-years">(2021-2022)</span></h2>
+                                </div>
+                                <div class="timeline">
+                                    <div class="timeline-item">
+                                        <div class="date">2021</div>
+                                        <div>
+                                            <h3>USACO Silver Division</h3>
+                                            <p>Reached Silver in December 2021 with a perfect score.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
                     </div>
                 </main>
             </div>
@@ -698,6 +946,9 @@
         const footerStatusText = document.getElementById("footer-status-text");
         const footerStatusLabel = document.getElementById("footer-status-label");
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const viewButtons = document.querySelectorAll("[data-view-button]");
+        const viewPanels = document.querySelectorAll("[data-view-panel]");
+        const viewSwitches = document.querySelectorAll(".view-switch");
         const footerStatuses = [
             "Thinking",
             "Pontificating",
@@ -714,6 +965,71 @@
             "Buying lottery tickets",
             "Getting déjà vu"
         ];
+
+        if (viewButtons.length && viewPanels.length) {
+            let activeView = "section";
+            let viewSwapTimer;
+
+            const syncViewControls = (view) => {
+                viewButtons.forEach((button) => {
+                    const isSelected = button.dataset.viewButton === view;
+                    button.setAttribute("aria-selected", String(isSelected));
+                });
+
+                viewSwitches.forEach((viewSwitch) => {
+                    viewSwitch.dataset.active = view;
+                });
+            };
+
+            const showViewPanel = (view) => {
+                viewPanels.forEach((panel) => {
+                    const isSelected = panel.dataset.viewPanel === view;
+                    panel.hidden = !isSelected;
+                    panel.classList.toggle("is-active", isSelected);
+                });
+
+                activeView = view;
+                syncViewControls(view);
+            };
+
+            const setView = (view, animateControl = false) => {
+                const nextPanel = Array.from(viewPanels).find((panel) => panel.dataset.viewPanel === view);
+
+                if (!nextPanel) {
+                    return;
+                }
+
+                window.clearTimeout(viewSwapTimer);
+                syncViewControls(view);
+
+                if (view === activeView) {
+                    return;
+                }
+
+                if (animateControl && !prefersReducedMotion) {
+                    viewSwapTimer = window.setTimeout(() => {
+                        showViewPanel(view);
+                    }, 150);
+                    return;
+                }
+
+                showViewPanel(view);
+            };
+
+            viewButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    setView(button.dataset.viewButton, true);
+                });
+            });
+
+            document.querySelectorAll(".nav a[href^='#']").forEach((link) => {
+                link.addEventListener("click", () => {
+                    setView("section");
+                });
+            });
+
+            syncViewControls(activeView);
+        }
 
         if (footerStatusText && footerStatusLabel) {
             let footerStatusIndex = 0;
