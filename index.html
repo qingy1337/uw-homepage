@@ -289,6 +289,10 @@
             outline-offset: 2px;
         }
 
+        body[data-show-view-switch="false"] .view-switch {
+            display: none;
+        }
+
         .view-panel {
             display: grid;
             gap: 54px;
@@ -631,7 +635,7 @@
         }
     </style>
 </head>
-<body>
+<body data-show-view-switch="false">
     <div class="page">
         <div class="layout">
             <div class="identity">
@@ -949,6 +953,7 @@
         const viewButtons = document.querySelectorAll("[data-view-button]");
         const viewPanels = document.querySelectorAll("[data-view-panel]");
         const viewSwitches = document.querySelectorAll(".view-switch");
+        const showViewSwitch = document.body.dataset.showViewSwitch !== "false";
         const footerStatuses = [
             "Thinking",
             "Pontificating",
@@ -966,7 +971,7 @@
             "Getting déjà vu"
         ];
 
-        if (viewButtons.length && viewPanels.length) {
+        if (showViewSwitch && viewButtons.length && viewPanels.length) {
             let activeView = "section";
             let viewSwapTimer;
 
