@@ -103,24 +103,29 @@
         }
 
         h1 {
-            margin-bottom: var(--space-3);
+            margin-bottom: 0;
             font-size: clamp(2.4rem, 4vw, 3.2rem);
             line-height: 0.98;
             font-weight: 500;
             letter-spacing: -0.025em;
+            white-space: nowrap;
         }
 
-        .affiliation {
-            color: var(--purple);
-            font-size: 1rem;
-            line-height: 1.5;
-            margin-bottom: var(--space-6);
+        .pronouns {
+            color: #aaa39a;
+            display: inline-block;
+            font-family: var(--font-sans);
+            font-size: 0.28em;
+            font-weight: 400;
+            letter-spacing: 0;
+            margin-left: 10px;
+            white-space: nowrap;
         }
 
         .contact-list {
             display: grid;
             gap: var(--space-3);
-            margin: 0;
+            margin: var(--space-6) 0 0;
             padding: 0;
             list-style: none;
             font-size: 0.94rem;
@@ -143,25 +148,30 @@
         }
 
         .nav {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 2px 18px;
-            margin-top: var(--space-7);
+            background: rgba(245, 242, 235, 0.48);
+            border: 1px solid rgba(216, 209, 196, 0.58);
+            border-radius: 7px;
+            display: grid;
+            gap: 2px;
+            margin-top: var(--space-6);
+            padding: 7px;
             font-size: 0.91rem;
         }
 
         .nav a {
             display: inline-flex;
             align-items: center;
+            border-radius: 5px;
             min-height: 36px;
+            padding: 0 10px;
             color: var(--muted);
-            text-decoration-color: transparent;
-            transition: color 0.18s ease, text-decoration-color 0.18s ease;
+            text-decoration: none;
+            transition: background 0.18s ease, color 0.18s ease;
         }
 
         .nav a:hover {
+            background: rgba(75, 46, 131, 0.055);
             color: var(--purple);
-            text-decoration-color: currentColor;
         }
 
         main {
@@ -515,10 +525,6 @@
                 position: static;
             }
 
-            .affiliation {
-                margin-bottom: var(--space-5);
-            }
-
             .nav {
                 margin-top: var(--space-5);
             }
@@ -639,12 +645,7 @@
     <div class="page">
         <div class="layout">
             <div class="identity">
-                <h1>Qingyun Li</h1>
-                <p class="affiliation">
-                    Computer Science student<br>
-                    Paul G. Allen School<br>
-                    University of Washington
-                </p>
+                <h1>Qingyun Li<span class="pronouns">(he/him)</span></h1>
 
                 <ul class="contact-list" aria-label="Contact links">
                     <li><span>Email</span> <a href="mailto:qxli2@uw.edu">qxli2@uw.edu</a></li>
