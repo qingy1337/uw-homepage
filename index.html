@@ -314,7 +314,11 @@
 
         .age-stack {
             display: grid;
-            gap: 15px;
+            gap: 0;
+        }
+
+        .age-stack > .publication + .timeline {
+            margin-top: 30px;
         }
 
         .age-years {
@@ -334,7 +338,7 @@
         }
 
         .publication + .publication {
-            margin-top: 13px;
+            margin-top: 20px;
         }
 
         .publication h3 {
@@ -641,7 +645,7 @@
         }
     </style>
 </head>
-<body data-show-view-switch="false">
+<body data-show-view-switch="false"> <!-- ==========================================================================  -->
     <div class="page">
         <div class="layout">
             <div class="identity">
