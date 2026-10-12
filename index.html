@@ -85,6 +85,19 @@
             top: var(--space-7);
         }
 
+        .profile-photo {
+            aspect-ratio: 7 / 5;
+            border: 1px solid rgba(216, 209, 196, 0.72);
+            border-radius: 7px;
+            display: block;
+            margin: 0 auto var(--space-5);
+            max-width: 262px;
+            object-fit: cover;
+            object-position: center bottom;
+            padding-inline: 20px;
+            width: calc(100% - 24px);
+        }
+
         .right-column {
             min-width: 0;
         }
@@ -670,6 +683,10 @@
                 position: static;
             }
 
+            .profile-photo {
+                display: none;
+            }
+
             .nav {
                 display: none;
             }
@@ -688,6 +705,7 @@
     <div class="page">
         <div class="layout">
             <div class="identity">
+                <img class="profile-photo" src="profile.png" alt="Qingyun Li with a dog wearing a UW bandana">
                 <h1>Qingyun Li<span class="pronouns">(he/him)</span></h1>
 
                 <ul class="contact-list" aria-label="Contact links">
