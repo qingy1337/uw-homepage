@@ -136,36 +136,64 @@
             white-space: nowrap;
         }
 
-        .contact-list {
-            display: grid;
-            gap: var(--space-3);
-            margin: var(--space-6) 0 0;
-            padding: 0;
-            list-style: none;
-            font-size: 0.94rem;
-            line-height: 1.35;
+        .contact-email {
+            margin: calc(var(--space-5) + var(--space-1)) 0 0;
+            font-size: 0.93rem;
+            line-height: 1.3;
+            text-align: center;
         }
 
-        .contact-list li {
-            display: grid;
-            grid-template-columns: 48px minmax(0, 1fr);
-            gap: var(--space-2);
-            align-items: baseline;
-        }
-
-        .contact-list span {
-            color: var(--muted);
-            font-size: 0.76rem;
+        .contact-email a {
+            background: rgba(245, 242, 235, 0.30);
+            border: 1px solid rgba(216, 209, 196, 0.58);
+            border-radius: 6px;
+            color: var(--purple-dark);
+            display: inline-grid;
             font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.015em;
+            padding: 7px 19px 8px;
+            text-decoration: none;
+            transition: background 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+        }
+
+        .contact-email a:hover {
+            background: var(--surface-purple);
+            border-color: rgba(75, 46, 131, 0.3);
+        }
+
+        .contact-email a.is-copied {
+            background: var(--surface-purple);
+            border-color: rgba(75, 46, 131, 0.3);
+            color: var(--purple);
+        }
+
+        .email-address,
+        .email-copy-state {
+            grid-area: 1 / 1;
+            text-align: center;
+            transition: opacity 0.18s ease, transform 0.18s ease;
+        }
+
+        .email-copy-state {
+            opacity: 0;
+            transform: translateY(3px);
+        }
+
+        .contact-email a.is-copied .email-address {
+            opacity: 0;
+            transform: translateY(-3px);
+        }
+
+        .contact-email a.is-copied .email-copy-state {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .social-links {
             display: flex;
             gap: var(--space-5);
             justify-content: center;
-            margin-top: var(--space-5);
+            margin-top: var(--space-4);
         }
 
         .social-link {
@@ -382,7 +410,7 @@
         }
 
         .publication {
-            background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(245, 242, 235, 0.54));
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(245, 242, 235, 0.29));
             border: 1px solid rgba(216, 209, 196, 0.88);
             border-radius: 7px;
             display: grid;
@@ -667,6 +695,9 @@
             .publication h3 a,
             .view-switch::before,
             .view-switch button,
+            .contact-email a,
+            .email-address,
+            .email-copy-state,
             .footer-status-text,
             #footer-status-label,
             #footer-status-label::after {
@@ -716,10 +747,12 @@
                 <img class="profile-photo" src="profile.png" alt="Qingyun Li with a dog wearing a UW bandana">
                 <h1>Qingyun Li<span class="pronouns">(he/him)</span></h1>
 
-                <ul class="contact-list" aria-label="Contact links">
-                    <li><span>Email</span> <a href="mailto:qxli2@uw.edu">qxli2@uw.edu</a></li>
-                    <li><span>CS</span> <a href="mailto:qxli2@cs.washington.edu">qxli2@cs.washington.edu</a></li>
-                </ul>
+                <p class="contact-email">
+                    <a href="mailto:qxli2@cs.washington.edu" title="Copy email address" aria-label="Copy email address">
+                        <span class="email-address" aria-hidden="true">qxli2@cs.washington.edu</span>
+                        <span class="email-copy-state" aria-hidden="true">Copied!</span>
+                    </a>
+                </p>
 
                 <div class="social-links" aria-label="Profiles">
                     <a class="social-link" href="https://github.com/qingy1337" target="_blank" rel="noreferrer" aria-label="GitHub" title="GitHub">
@@ -858,7 +891,7 @@
                                 </div>
 
                                 <div class="timeline-item">
-                                    <div class="date">2025</div>
+                                    <div class="date">2024-2025</div>
                                     <div>
                                         <h3>High School</h3>
                                         <p>Graduated in ninth grade with a 4.0 GPA.</p>
@@ -1118,6 +1151,8 @@
         </footer>
     </div>
     <script>
+        const emailLink = document.querySelector(".contact-email a");
+        const emailAddress = document.querySelector(".email-address");
         const footerStatusText = document.getElementById("footer-status-text");
         const footerStatusLabel = document.getElementById("footer-status-label");
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1144,6 +1179,48 @@
             "Buying lottery tickets",
             "Getting déjà vu"
         ];
+
+        if (emailLink && emailAddress) {
+            let emailStateTimer;
+
+            const copyEmail = async (email) => {
+                if (navigator.clipboard && window.isSecureContext) {
+                    await navigator.clipboard.writeText(email);
+                    return;
+                }
+
+                const textArea = document.createElement("textarea");
+                textArea.value = email;
+                textArea.setAttribute("readonly", "");
+                textArea.style.position = "fixed";
+                textArea.style.opacity = "0";
+                document.body.appendChild(textArea);
+                textArea.select();
+                const copied = document.execCommand("copy");
+                textArea.remove();
+
+                if (!copied) {
+                    throw new Error("Unable to copy email address");
+                }
+            };
+
+            emailLink.addEventListener("click", async (event) => {
+                event.preventDefault();
+
+                try {
+                    await copyEmail(emailAddress.textContent.trim());
+                    window.clearTimeout(emailStateTimer);
+                    emailLink.classList.add("is-copied");
+                    emailLink.setAttribute("aria-label", "Email copied");
+                    emailStateTimer = window.setTimeout(() => {
+                        emailLink.classList.remove("is-copied");
+                        emailLink.setAttribute("aria-label", "Copy email address");
+                    }, 1600);
+                } catch (error) {
+                    window.location.href = emailLink.href;
+                }
+            });
+        }
 
         if (showViewSwitch && viewButtons.length && viewPanels.length) {
             let activeView = "section";
