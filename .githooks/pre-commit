@@ -1,0 +1,22 @@
+#!/bin/sh
+
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+cd "$repo_root"
+
+current_month_year=$(LC_ALL=C date "+%B %Y")
+
+if grep -Fq "Last updated $current_month_year." index.html; then
+    exit 0
+fi
+
+if ! git diff --quiet -- index.html; then
+    echo "The footer date needs updating, but index.html has unstaged changes." >&2
+    echo "Stage or stash those changes, then commit again." >&2
+    exit 1
+fi
+
+./scripts/update-last-updated.sh
+git add -- index.html
+
