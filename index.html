@@ -305,6 +305,37 @@
             margin-top: var(--space-2);
         }
 
+        .news-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .news-item {
+            align-items: baseline;
+            display: grid;
+            gap: var(--space-3);
+            grid-template-columns: 74px minmax(0, 1fr);
+        }
+
+        .news-date {
+            color: var(--gold-text);
+            font-size: 0.76rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+        }
+
+        .news-item p {
+            color: var(--muted);
+            font-size: 0.96rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .news-item strong {
+            color: var(--ink);
+            font-weight: 500;
+        }
+
         .interest {
             border-radius: 999px;
             color: #403350;
@@ -765,6 +796,7 @@
 
                 <nav class="nav" aria-label="Page sections">
                     <a href="#research">About</a>
+                    <a href="#news">News</a>
                     <a href="#publications">Publications</a>
                     <a href="#education">Education</a>
                     <a href="#achievements">Random Stuff</a>
@@ -800,6 +832,30 @@
                             </div>
                         </section>
 
+                        <section id="news">
+                            <div class="section-heading">
+                                <h2>News</h2>
+                            </div>
+                            <div class="news-list">
+                                <div class="news-item">
+                                    <time class="news-date" datetime="2026-10">Oct 2026</time>
+                                    <p><i>Language Models Detokenize, But Only for Themselves</i> was selected for an oral presentation at AACL-IJCNLP 2026!</p>
+                                </div>
+                                <div class="news-item">
+                                    <time class="news-date" datetime="2026-09">Sep 2026</time>
+                                    <p><i>Learning Spectrum-Matched Gap Sequences for Shellsort</i> accepted to NeurIPS 2026 as poster!</p>
+                                </div>
+                                <div class="news-item">
+                                    <time class="news-date" datetime="2026-09">Sep 2026</time>
+                                    <p><i>Language Models Detokenize, But Only for Themselves</i> accepted to AACL-IJCNLP 2026.</p>
+                                </div>
+                                <div class="news-item">
+                                    <time class="news-date" datetime="2026-07">Jul 2026</time>
+                                    <p>I am honored to have received the Kyril Faenov Endowed Scholarship in Computer Science &amp; Engineering!</p>
+                                </div>
+                            </div>
+                        </section>
+
                         <div class="view-panel is-active" id="section-view" role="tabpanel" aria-label="By section" data-view-panel="section">
                         <section id="publications">
                             <div class="section-heading section-heading-with-switch">
@@ -825,7 +881,7 @@
                                 <p class="authors"><strong>Qingyun Li</strong>, Ruoyun Li</p>
                                 <p class="venue">
                                     <span>AACL-IJCNLP 2026</span>
-                                    <span class="pub-pill">Main track</span>
+                                    <span class="pub-pill">Oral</span>
                                 </p>
                             </article>
 
