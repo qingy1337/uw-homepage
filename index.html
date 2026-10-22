@@ -305,35 +305,47 @@
             margin-top: var(--space-2);
         }
 
-        .news-list {
+        .news-group {
+            align-items: baseline;
             display: grid;
-            gap: 14px;
+            gap: var(--space-4);
+            grid-template-columns: 48px minmax(0, 1fr);
+        }
+
+        .news-year {
+            color: var(--faint);
+            font-size: 0.87rem;
+            line-height: 1.5;
+        }
+
+        .news-entries {
+            display: grid;
+            gap: 8px;
         }
 
         .news-item {
             align-items: baseline;
             display: grid;
-            gap: var(--space-3);
-            grid-template-columns: 74px minmax(0, 1fr);
-        }
-
-        .news-date {
-            color: var(--gold-text);
-            font-size: 0.76rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
+            gap: var(--space-4);
+            grid-template-columns: minmax(0, 1fr) auto;
         }
 
         .news-item p {
-            color: var(--muted);
+            color: var(--ink);
             font-size: 0.96rem;
-            line-height: 1.5;
+            line-height: 1.45;
             margin: 0;
         }
 
         .news-item strong {
-            color: var(--ink);
-            font-weight: 500;
+            font-weight: 600;
+        }
+
+        .news-item time {
+            color: var(--faint);
+            font-size: 0.8rem;
+            font-style: italic;
+            white-space: nowrap;
         }
 
         .interest {
@@ -836,22 +848,25 @@
                             <div class="section-heading">
                                 <h2>News</h2>
                             </div>
-                            <div class="news-list">
-                                <div class="news-item">
-                                    <time class="news-date" datetime="2026-10">Oct 2026</time>
-                                    <p><i>Language Models Detokenize, But Only for Themselves</i> was selected for an oral presentation at AACL-IJCNLP 2026!</p>
-                                </div>
-                                <div class="news-item">
-                                    <time class="news-date" datetime="2026-09">Sep 2026</time>
-                                    <p><i>Learning Spectrum-Matched Gap Sequences for Shellsort</i> accepted to NeurIPS 2026 as poster!</p>
-                                </div>
-                                <div class="news-item">
-                                    <time class="news-date" datetime="2026-09">Sep 2026</time>
-                                    <p><i>Language Models Detokenize, But Only for Themselves</i> accepted to AACL-IJCNLP 2026.</p>
-                                </div>
-                                <div class="news-item">
-                                    <time class="news-date" datetime="2026-07">Jul 2026</time>
-                                    <p>I am honored to have received the Kyril Faenov Endowed Scholarship in Computer Science &amp; Engineering!</p>
+                            <div class="news-group">
+                                <div class="news-year">2026</div>
+                                <div class="news-entries">
+                                    <div class="news-item">
+                                        <p><em>Language Models Detokenize, But Only for Themselves</em> was selected for an <strong>oral presentation</strong> at AACL-IJCNLP 2026!</p>
+                                        <time datetime="2026-10-22">Oct 22</time>
+                                    </div>
+                                    <div class="news-item">
+                                        <p><em>Learning Spectrum-Matched Gap Sequences for Shellsort</em> was accepted to NeurIPS 2026 as a poster!</p>
+                                        <time datetime="2026-09-24">Sep 24</time>
+                                    </div>
+                                    <div class="news-item">
+                                        <p><em>Language Models Detokenize, But Only for Themselves</em> was accepted to AACL-IJCNLP 2026.</p>
+                                        <time datetime="2026-09-08">Sep 8</time>
+                                    </div>
+                                    <div class="news-item">
+                                        <p>I am honored to have received the Kyril Faenov Endowed Scholarship in Computer Science &amp; Engineering!</p>
+                                        <time datetime="2026-07-22">Jul 22</time>
+                                    </div>
                                 </div>
                             </div>
                         </section>
