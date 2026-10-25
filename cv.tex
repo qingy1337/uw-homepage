@@ -1,0 +1,59 @@
+%!TEX TS-program = lualatex
+%!TEX encoding = UTF-8 Unicode
+
+% Built from Awesome-CV by Claud D. Park.
+% The adapted class remains under the LPPL; see AWESOME-CV-LICENCE.
+\documentclass[10pt,letterpaper]{qingyun-awesome-cv}
+
+\geometry{left=0.78in, top=0.65in, right=0.78in, bottom=0.72in, footskip=0.34in}
+
+% A clear violet related to the website accent, lifted for print legibility.
+\definecolor{awesome}{HTML}{7048A8}
+\definecolor{darktext}{HTML}{2E2C31}
+\definecolor{text}{HTML}{3C3940}
+\definecolor{graytext}{HTML}{66616A}
+\definecolor{lighttext}{HTML}{908A94}
+\definecolor{sectiondivider}{HTML}{D8D3DA}
+\setbool{acvSectionColorHighlight}{true}
+
+\renewcommand{\acvHeaderSocialSep}{\enskip\textbar\enskip}
+\renewcommand{\acvHeaderAfterNameSkip}{1.6mm}
+\renewcommand{\acvHeaderAfterPositionSkip}{1.6mm}
+\renewcommand{\acvSectionTopSkip}{4.1mm}
+\renewcommand{\acvSectionContentTopSkip}{2.7mm}
+\renewcommand*{\headerfirstnamestyle}[1]{{\fontsize{34pt}{1em}\headerfontlight\color{graytext} #1}}
+\renewcommand*{\headerlastnamestyle}[1]{{\fontsize{34pt}{1em}\headerfont\fontseries{sb}\selectfont\color{text} #1}}
+\renewcommand*{\headerpositionstyle}[1]{{\fontsize{8.4pt}{1em}\bodyfont\scshape\color{awesome} #1}}
+\renewcommand*{\headersocialstyle}[1]{{\fontsize{7.4pt}{1em}\headerfont\color{text} #1}}
+\renewcommand*{\paragraphstyle}{\fontsize{10pt}{1.35em}\bodyfont\upshape\color{text}}
+\renewcommand*{\entrypositionstyle}[1]{{\fontsize{9.5pt}{1.15em}\bodyfont\color{graytext} #1}}
+\newcommand{\myname}{{\fontseries{sb}\selectfont Qingyun Li}}
+
+\name{Qingyun}{Li}
+\position{Computer Science at the University of Washington}
+\email{qxli2@cs.washington.edu}
+\github{qingy1337}
+\googlescholar{z3cWR-kAAAAJ}{Google Scholar}
+\extrainfo{%
+  \href{https://openreview.net/profile?id=\%7EQingyun_Li3}{OpenReview}%
+  \enskip\textbar\enskip
+  \href{https://huggingface.co/qingy2024}{Hugging Face}%
+}
+
+\begin{document}
+
+\makecvheader[C]
+\makecvfooter
+  {October 2026}
+  {Qingyun Li~~~\textbullet~~~Curriculum Vitae}
+  {\thepage}
+
+\input{cv/research.tex}
+\input{cv/education.tex}
+\input{cv/experience.tex}
+\input{cv/publications.tex}
+\input{cv/patents.tex}
+\input{cv/honors.tex}
+\input{cv/service.tex}
+
+\end{document}
