@@ -86,16 +86,23 @@
             transform: translateX(-4px);
         }
 
-        .profile-photo {
-            aspect-ratio: 7 / 5;
+        .profile-photo-frame {
             border: 2px solid #9270c2;
             border-radius: 12px;
-            display: block;
+            background: var(--paper);
             margin: 0 auto var(--space-5);
             max-width: 262px;
+            padding: 1.5px;
+            width: calc(100% - 24px);
+        }
+
+        .profile-photo {
+            aspect-ratio: 7 / 5;
+            border-radius: 8.5px;
+            display: block;
             object-fit: cover;
             object-position: center;
-            width: calc(100% - 24px);
+            width: 100%;
         }
 
         .right-column {
@@ -763,7 +770,7 @@
                 transform: none;
             }
 
-            .profile-photo {
+            .profile-photo-frame {
                 display: none;
             }
 
@@ -785,7 +792,9 @@
     <div class="page">
         <div class="layout">
             <div class="identity">
-                <img class="profile-photo" src="profile_full.png" alt="Portrait of Qingyun Li">
+                <div class="profile-photo-frame">
+                    <img class="profile-photo" src="profile_full.png" alt="Portrait of Qingyun Li">
+                </div>
                 <h1>Qingyun Li</h1>
 
                 <p class="contact-email">
